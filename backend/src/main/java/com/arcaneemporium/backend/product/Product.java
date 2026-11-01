@@ -7,6 +7,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +32,7 @@ public class Product {
     private int stock;
 
     @Min(0)
-    private double price;
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
