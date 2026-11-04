@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -28,4 +27,8 @@ public class Category {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Product> products = new HashSet<>();
+
+    public Category(String name){
+        this.name = name;
+    }
 }
