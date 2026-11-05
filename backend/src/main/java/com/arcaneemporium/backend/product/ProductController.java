@@ -1,8 +1,8 @@
 package com.arcaneemporium.backend.product;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.arcaneemporium.backend.category.CategoryDTO;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -10,20 +10,24 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private ProductService service;
+    private final ProductService service;
 
     public ProductController(ProductService service){
         this.service = service;
     }
 
-
-    @GetMapping("/home")
-    public String showHomePage(){
-        return "Home";
+    @GetMapping("/{id}")
+    public ProductDTO getProduct(@PathVariable int id){
+        return service.getProduct(id);
     }
 
     @GetMapping("/list")
     public List<ProductDTO> getProductList(){
         return service.getProducts();
+    }
+
+    @PostMapping("/add_product")
+    public CreateProductDTO createProduct(@RequestBody @Valid CreateProductDTO createProductDTO){
+        return service.createProduct(createProductDTO);
     }
 }
