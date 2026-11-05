@@ -18,7 +18,7 @@ public class CategoryService {
         return categoryDTO;
     }
 
-    private Category getCategoryEntity(int id){
+    public Category getCategoryEntity(int id){
         return repository.findById(id).orElseThrow(() -> new NoSuchElementException(
                 "Category with id %d not found".formatted(id)
         ));
