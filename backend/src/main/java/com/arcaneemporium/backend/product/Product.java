@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -39,5 +38,13 @@ public class Product {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Category category;
+
+    public Product(String name, String description, int stock, BigDecimal price, Category category){
+        this.name = name;
+        this.description = description;
+        this.stock = stock;
+        this.price = price;
+        this.category = category;
+    }
 
 }
