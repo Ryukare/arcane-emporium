@@ -1,5 +1,7 @@
 package com.arcaneemporium.backend.exception;
 
+import org.hibernate.annotations.NotFound;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
@@ -20,5 +23,15 @@ public class GlobalExceptionHandler {
             messages.add(fieldError.getField() + ": " + fieldError.getDefaultMessage());
         }
         return ResponseEntity.badRequest().body(messages);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> HandleNoSuchElementException(NoSuchElementException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> HandleIllegalStateException(IllegalStateException e){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
 }
