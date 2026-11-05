@@ -13,8 +13,9 @@ public class CategoryService {
         this.repository = repository;
     }
 
-    public Category createCategory(CategoryDTO categoryDTO){
-        return repository.save(new Category(categoryDTO.name()));
+    public CategoryDTO createCategory(CategoryDTO categoryDTO){
+        repository.save(new Category(categoryDTO.name()));
+        return categoryDTO;
     }
 
     private Category getCategoryEntity(int id){
@@ -32,13 +33,14 @@ public class CategoryService {
                 .toList();
     }
 
-    public Category updateCategory(int id, CategoryDTO categoryDTO){
+    public CategoryDTO updateCategory(int id, CategoryDTO categoryDTO){
         Category category = getCategoryEntity(id);
         category.setName(categoryDTO.name());
-        return repository.save(category);
+        repository.save(category);
+        return categoryDTO;
     }
 
-    public Category deleteCategory(int id){
+    public CategoryDTO deleteCategory(int id){
         Category category = getCategoryEntity(id);
 
         if(!category.getProducts().isEmpty()){
@@ -47,6 +49,6 @@ public class CategoryService {
 
         repository.delete(category);
 
-        return category;
+        return new CategoryDTO(category.getName());
     }
 }

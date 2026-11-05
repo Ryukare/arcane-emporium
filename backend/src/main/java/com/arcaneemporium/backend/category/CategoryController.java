@@ -26,17 +26,17 @@ public class CategoryController {
     }
 
     @PostMapping("/add_category")
-    public Category createCategory(@RequestBody @Valid CategoryDTO categoryDTO){
+    public CategoryDTO createCategory(@RequestBody @Valid CategoryDTO categoryDTO){
         return service.createCategory(categoryDTO);
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable int id, @RequestBody @Valid CategoryDTO categoryDTO){
+    public CategoryDTO updateCategory(@PathVariable int id, @RequestBody @Valid CategoryDTO categoryDTO){
         return service.updateCategory(id, categoryDTO);
     }
 
     @DeleteMapping("/{id}")
-    public Category deleteCategory(@PathVariable int id){
+    public CategoryDTO deleteCategory(@PathVariable int id){
         return service.deleteCategory(id);
     }
 }
