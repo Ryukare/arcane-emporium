@@ -30,4 +30,15 @@ public class ProductController {
     public CreateProductDTO createProduct(@RequestBody @Valid CreateProductDTO createProductDTO){
         return service.createProduct(createProductDTO);
     }
+
+    @PutMapping("/{id}")
+    public CreateProductDTO updateProduct(@PathVariable int id,
+                                          @RequestBody @Valid CreateProductDTO createProductDTO){
+        return service.updateProduct(id, createProductDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ProductDTO deleteProduct(@PathVariable int id){
+        return service.deleteProduct(id);
+    }
 }
