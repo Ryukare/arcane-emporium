@@ -1,5 +1,6 @@
 package com.arcaneemporium.backend.category;
 
+import com.arcaneemporium.backend.product.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -68,15 +70,22 @@ public class CategoryServiceTest {
     void deleteCategoryTest() {
         Category category = new Category("test");
 
+        Category categoryWithProduct = new Category("product");
+        Product product = new Product("test", "desc", 1,
+                new BigDecimal(1), categoryWithProduct);
+        categoryWithProduct.getProducts().add(product);
+
         Mockito.when(repository.findById(1)).thenReturn(Optional.of(category));
-        Mockito.when(repository.findById(2)).thenReturn(Optional.empty());
+        Mockito.when(repository.findById(2)).thenReturn(Optional.of(categoryWithProduct));
+        Mockito.when(repository.findById(3)).thenReturn(Optional.empty());
 
         CategoryDTO categoryDTO = service.deleteCategory(1);
 
         Mockito.verify(repository).delete(Mockito.any(Category.class));
-
         Assertions.assertEquals("test", categoryDTO.name());
-        Assertions.assertThrows(NoSuchElementException.class, () -> service.deleteCategory(2));
+
+        Assertions.assertThrows(IllegalStateException.class, () -> service.deleteCategory(2));
+        Assertions.assertThrows(NoSuchElementException.class, () -> service.deleteCategory(3));
     }
 
 }
