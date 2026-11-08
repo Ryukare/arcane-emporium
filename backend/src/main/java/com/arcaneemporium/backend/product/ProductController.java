@@ -1,6 +1,5 @@
 package com.arcaneemporium.backend.product;
 
-import com.arcaneemporium.backend.category.CategoryDTO;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
