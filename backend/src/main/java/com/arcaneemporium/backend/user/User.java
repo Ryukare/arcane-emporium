@@ -1,5 +1,6 @@
 package com.arcaneemporium.backend.user;
 
+import com.arcaneemporium.backend.category.Category;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.math.BigDecimal;
 
 @Entity
 @NoArgsConstructor
@@ -38,4 +41,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    public User(String username, String password, String email, Role role){
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
 }
