@@ -1,7 +1,10 @@
-package com.arcaneemporium.backend.product;
+package com.arcaneemporium.backend.utils;
 
 import com.arcaneemporium.backend.category.Category;
 import com.arcaneemporium.backend.category.CategoryDTO;
+import com.arcaneemporium.backend.product.CreateProductDTO;
+import com.arcaneemporium.backend.product.Product;
+import com.arcaneemporium.backend.product.ProductDTO;
 
 public class ProductMapper {
 

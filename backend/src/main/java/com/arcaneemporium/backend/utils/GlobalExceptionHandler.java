@@ -1,6 +1,5 @@
-package com.arcaneemporium.backend.exception;
+package com.arcaneemporium.backend.utils;
 
-import org.hibernate.annotations.NotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
