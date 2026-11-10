@@ -27,7 +27,7 @@ public class User {
     private String username;
 
     @NotBlank(message = "Password is required")
-    @Size(min = 5, max = 50, message = "Password must have 5-50 characters")
+    @Size(min = 5, max = 255, message = "Password must have 5-50 characters")
     private String password;
 
     @Column(unique = true, nullable = false)
