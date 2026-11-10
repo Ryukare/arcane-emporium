@@ -2,6 +2,7 @@ package com.arcaneemporium.backend.product;
 
 import com.arcaneemporium.backend.category.Category;
 import com.arcaneemporium.backend.category.CategoryService;
+import com.arcaneemporium.backend.utils.ProductMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
