@@ -1,7 +1,6 @@
 package com.arcaneemporium.backend.product;
 
 import com.arcaneemporium.backend.category.Category;
-import com.arcaneemporium.backend.category.CategoryDTO;
 import com.arcaneemporium.backend.category.CategoryService;
 import org.springframework.stereotype.Service;
 
