@@ -20,9 +20,7 @@ public class ProductService {
 
     public CreateProductDTO createProduct(CreateProductDTO createProductDTO){
         Category category = categoryService.getCategoryEntity(createProductDTO.categoryId());
-
-        repository.save(new Product(createProductDTO.name(), createProductDTO.description(),
-                createProductDTO.stock(), createProductDTO.price(), category));
+        repository.save(ProductMapper.mapToProduct(createProductDTO, category));
         return createProductDTO;
     }
 
@@ -33,13 +31,11 @@ public class ProductService {
     }
 
     public ProductDTO getProduct(int id){
-        Product product = getProductEntity(id);
-        return new ProductDTO(product.getName(), product.getDescription(), product.getPrice(),
-                new CategoryDTO(product.getCategory().getName()));
+        return ProductMapper.mapToProductDTO(getProductEntity(id));
     }
 
     public List<ProductDTO> getProducts(){
-        return repository.findAll().stream().map(ProductMapper::mapProduct)
+        return repository.findAll().stream().map(ProductMapper::mapToProductDTO)
                 .toList();
     }
 
@@ -58,11 +54,8 @@ public class ProductService {
 
     public ProductDTO deleteProduct(int id){
         Product product = getProductEntity(id);
-
         repository.delete(product);
-
-        return new ProductDTO(product.getName(), product.getDescription(), product.getPrice(),
-                new CategoryDTO(product.getCategory().getName()));
+        return ProductMapper.mapToProductDTO(product);
     }
 
 }
