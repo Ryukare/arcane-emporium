@@ -1,9 +1,7 @@
 package com.arcaneemporium.backend.user;
 
-import com.arcaneemporium.backend.product.CreateProductDTO;
-import com.arcaneemporium.backend.product.ProductDTO;
+import com.arcaneemporium.backend.utils.JwtService;
 import jakarta.validation.Valid;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,9 +11,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService service;
+    private final JwtService jwtService;
 
-    public UserController(UserService service){
+    public UserController(UserService service, JwtService jwtService){
         this.service = service;
+        this.jwtService = jwtService;
     }
 
     @GetMapping("/{id}")
@@ -40,6 +40,8 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody @Valid LoginUserDTO loginUserDTO){
-        return service.login(loginUserDTO);
+        service.login(loginUserDTO);
+
+        return jwtService.generateToken(loginUserDTO.username());
     }
 }
