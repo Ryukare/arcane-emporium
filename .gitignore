@@ -3,12 +3,23 @@ target/
 backend/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+node_modules
+dist
+dist-ssr
+*.local
+
 
 ### Compiled class file ###
 *.class
 
 ### Log file ###
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 ### BlueJ files ###
 *.ctxt
@@ -25,7 +36,7 @@ backend/.mvn/wrapper/maven-wrapper.jar
 *.tar.gz
 *.rar
 
-### virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml ###
+### virtual machine crash logs ###
 hs_err_pid*
 replay_pid*
 
@@ -37,6 +48,8 @@ replay_pid*
 
 ### VS Code ###
 .vscode/
+.vscode/*
+!.vscode/extensions.json
 
 ### STS ###
 .apt_generated
@@ -60,3 +73,11 @@ build/
 # Environment variables
 .env
 .env.*
+
+### Editor directories and files ###
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
